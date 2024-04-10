@@ -28,21 +28,42 @@ for (let i = 0; i < navbarLinks.length; i++) {
 }
 
 
+function viewCV() {
+  // Create an anchor element
+  var link = document.createElement('a');
+  link.href = 'Emmanuel CV.pdf'; // Specify the file URL
+  link.target = '_blank'; // Specify the target to open in a new tab/window
+  document.body.appendChild(link);
+  link.click(); // Simulate a click event on the link
+  document.body.removeChild(link); // Clean up the link element
+}
 
+function viewFile(filePath) {
+  // Create an anchor element
+  var link = document.createElement('a');
+  link.href = filePath; // Specify the file URL
+  link.target = '_blank'; // Specify the target to open in a new tab/window
+  document.body.appendChild(link);
+  link.click(); // Simulate a click event on the link
+  document.body.removeChild(link); // Clean up the link element
+}
 
+function openTab() {
+  // Open a new tab
+  var newTab = window.open("", "_blank");
 
-/**
- * back to top & header
- */
+  // Write content to the new tab
+  newTab.document.write(`<h2>Select Video:</h2>`);
+}
 
-const backTopBtn = document.querySelector("[data-back-to-top]");
+function playVideo(videoFileName, posterImage) {
+  var videoPlayer = `
+    <video controls autoplay poster="${posterImage}">
+      <source src="${videoFileName}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  `;
 
-window.addEventListener("scroll", function () {
-  if (window.scrollY >= 100) {
-    header.classList.add("active");
-    backTopBtn.classList.add("active");
-  } else {
-    header.classList.remove("active");
-    backTopBtn.classList.remove("active");
-  }
-});
+  // Write video player content to the current tab
+  document.body.innerHTML = videoPlayer;
+}
